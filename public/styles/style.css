@@ -1,0 +1,144 @@
+/* entire container, keeps perspective */
+
+body {
+    background: linear-gradient(rgba(255, 152, 0, 0.2), white);
+    margin: 0;
+    height: 100vh;
+}
+
+#back {
+    position: fixed;
+    top: 25px;
+    right: 25px;
+    background-color: rgba(255, 199, 0, 0.2);
+    border-radius: 50% 50%;
+    width: 50px;
+    height: 50px;
+    font-size: 40px;
+}
+
+#back:focus {
+    outline: none;
+}
+
+#selector {
+    top: 150px;
+    position: relative;
+    margin: 0 auto;
+    width: 240px;
+    height: 360px;
+    border: 2px solid black;
+}
+
+.hidden {
+    display: none;
+}
+
+#teamList {
+    list-style: none;
+    padding: 20px;
+    -webkit-margin-before: 0;
+    -webkit-margin-after: 0;
+    -webkit-margin-start: 0;
+    -webkit-margin-end: 0;
+}
+
+.teamName {
+    padding: 10px;
+    border-bottom: 1px solid black;
+    text-align: center;
+    cursor: pointer;
+}
+
+#container {
+    top: 150px;
+    position: relative;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 720px;
+}
+
+@media screen and (max-width:480px) {
+    #container {
+        width: 420px;
+    }
+}
+
+.card {
+    display: inline-block;
+    perspective: 1000px;
+    width: 120px;
+    height: 160px;
+    margin: 25px;
+}
+
+
+/* flip the pane when clicked */
+
+.card.active .flipper {
+    transform: rotateY(180deg);
+}
+
+.flipper,
+.front,
+.back {
+    width: 120px;
+    height: 160px;
+    border: 1px solid black;
+}
+
+
+/* flip speed goes here */
+
+.flipper {
+    transition: 0.6s;
+    transform-style: preserve-3d;
+    position: relative;
+}
+
+.flipper:hover {
+    box-shadow: 0 0 10px rgba(35, 173, 255, 1);
+}
+
+.card.active .flipper:hover {
+    box-shadow: 0 0 10px rgba(255, 152, 0, 1);
+}
+
+
+/* hide back of pane during swap */
+
+.front,
+.back {
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+
+/* front pane, placed above back */
+
+.front {
+    z-index: 2;
+    /* for firefox 31 */
+    transform: rotateY(0deg);
+    background-image: url(../images/card-back.jpg);
+    background-size: 120px 160px;
+}
+
+
+/* back, initially hidden pane */
+
+.back {
+    transform: rotateY(180deg);
+    text-align: center;
+    background-color: #666;
+}
+
+.name {
+    font-size: 24px;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+}
