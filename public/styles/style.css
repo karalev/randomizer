@@ -22,7 +22,7 @@ body {
 }
 
 #selector {
-    top: 150px;
+    top: 50px;
     position: relative;
     margin: 0 auto;
     width: 240px;
@@ -51,7 +51,7 @@ body {
 }
 
 #container {
-    top: 150px;
+    top: 50px;
     position: relative;
     margin: 0 auto;
     display: flex;
